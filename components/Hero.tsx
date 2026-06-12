@@ -102,10 +102,10 @@ export default function Hero({ photoVersion }: { photoVersion?: number }) {
           {content.hero.kicker}
         </p>
 
-        <div className="flex flex-col items-start gap-6 md:flex-row md:items-stretch md:gap-10">
+        <div className="flex flex-col items-start gap-6 md:flex-row md:items-end md:gap-10">
           <div
             data-hero-avatar
-            className="relative h-32 w-28 shrink-0 scale-95 overflow-hidden rounded-2xl border border-line opacity-0 md:h-auto md:w-40 md:self-stretch lg:w-48"
+            className="relative h-28 w-28 shrink-0 scale-95 overflow-hidden rounded-2xl border border-line opacity-0 md:mb-[0.7rem] md:h-[10.1rem] md:w-[10.1rem] lg:mb-[0.95rem] lg:h-[13.4rem] lg:w-[13.4rem]"
           >
             <Image
               src={photoVersion ? `/profile.jpg?v=${photoVersion}` : "/profile.jpg"}
