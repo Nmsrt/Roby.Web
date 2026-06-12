@@ -3,7 +3,7 @@
 import { useRef } from "react";
 import ProjectCard from "@/components/ProjectCard";
 import type { Project } from "@/data/projects";
-import { gsap, useGSAP, MOTION_OK } from "@/lib/gsap";
+import { gsap, ScrollTrigger, useGSAP, MOTION_OK } from "@/lib/gsap";
 
 export default function ProjectGrid({ projects }: { projects: Project[] }) {
   const scope = useRef<HTMLDivElement>(null);
@@ -20,11 +20,26 @@ export default function ProjectGrid({ projects }: { projects: Project[] }) {
             ease: "power3.out",
             scrollTrigger: {
               trigger: card,
-              start: "top 88%",
+              start: "top 92%",
               once: true,
             },
           });
         });
+
+        // Trigger positions are measured before fonts/images settle under
+        // the 100svh hero; re-measure once everything has loaded so cards
+        // never get stuck at opacity 0.
+        const refresh = () => ScrollTrigger.refresh();
+        if (document.readyState === "complete") {
+          refresh();
+        } else {
+          window.addEventListener("load", refresh, { once: true });
+        }
+        const settle = window.setTimeout(refresh, 800);
+        return () => {
+          window.removeEventListener("load", refresh);
+          window.clearTimeout(settle);
+        };
       });
     },
     { scope }

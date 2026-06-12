@@ -12,6 +12,14 @@ const nextConfig: NextConfig = {
       { pathname: "/profile.jpg" },
       { pathname: "/thumbs/**" },
     ],
+    // Auto-derived video thumbnails
+    remotePatterns: [
+      { protocol: "https", hostname: "img.youtube.com" },
+      { protocol: "https", hostname: "i.ytimg.com" },
+      { protocol: "https", hostname: "vumbnail.com" },
+      { protocol: "https", hostname: "drive.google.com" },
+      { protocol: "https", hostname: "*.googleusercontent.com" },
+    ],
   },
 };
 

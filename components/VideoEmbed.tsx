@@ -1,19 +1,8 @@
 import type { Project } from "@/data/projects";
-
-function youtubeId(url: string): string | null {
-  const match = url.match(
-    /(?:youtube\.com\/(?:watch\?v=|embed\/|shorts\/)|youtu\.be\/)([\w-]{6,})/
-  );
-  return match?.[1] ?? null;
-}
-
-function vimeoId(url: string): string | null {
-  const match = url.match(/vimeo\.com\/(?:video\/)?(\w+)/);
-  return match?.[1] ?? null;
-}
+import { driveId, projectThumbnail, vimeoId, youtubeId } from "@/lib/video";
 
 export default function VideoEmbed({ project }: { project: Project }) {
-  const { type, videoUrl, title, thumbnail } = project;
+  const { type, videoUrl, title } = project;
 
   if (type === "youtube") {
     const id = youtubeId(videoUrl);
@@ -49,12 +38,29 @@ export default function VideoEmbed({ project }: { project: Project }) {
     );
   }
 
+  if (type === "gdrive") {
+    const id = driveId(videoUrl);
+    if (!id) return <EmbedFallback message="Invalid Google Drive URL" />;
+    return (
+      <div className="relative aspect-video w-full overflow-hidden bg-surface">
+        <iframe
+          src={`https://drive.google.com/file/d/${id}/preview`}
+          title={title}
+          allow="autoplay; fullscreen"
+          allowFullScreen
+          loading="lazy"
+          className="absolute inset-0 h-full w-full border-0"
+        />
+      </div>
+    );
+  }
+
   return (
     <video
       controls
       playsInline
       preload="metadata"
-      poster={thumbnail}
+      poster={projectThumbnail(project)}
       className="aspect-video w-full bg-surface object-cover"
     >
       <source src={videoUrl} type="video/mp4" />

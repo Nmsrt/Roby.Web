@@ -111,7 +111,13 @@ Video URL formats per type:
 
 - **youtube** — any `watch?v=`, `youtu.be/` or `shorts/` URL
 - **vimeo** — `https://vimeo.com/123456789`
+- **gdrive** — `https://drive.google.com/file/d/FILE_ID/view`; the file must
+  be shared as "Anyone with the link"
 - **self-hosted** — a path under `public/`, e.g. `/videos/cut.mp4` (H.264 MP4 recommended; the thumbnail doubles as the poster)
+
+Thumbnails are **auto-derived from the video URL** when the thumbnail field
+is left empty (YouTube/Vimeo/Drive). Set an explicit path/URL to override;
+self-hosted videos always need one (placeholder shown otherwise).
 
 ### Replacing placeholder media
 

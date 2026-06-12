@@ -1,6 +1,6 @@
 import projectsJson from "@/data/projects.json";
 
-export type ProjectType = "youtube" | "vimeo" | "self-hosted";
+export type ProjectType = "youtube" | "vimeo" | "gdrive" | "self-hosted";
 
 export interface Project {
   /** Used as the URL slug: /portfolio/[id] */
@@ -8,8 +8,12 @@ export interface Project {
   title: string;
   year: string;
   client: string;
-  /** Path under /public (or remote URL) for the grid thumbnail */
-  thumbnail: string;
+  /**
+   * Path under /public (or remote URL) for the grid thumbnail.
+   * Leave empty/undefined to auto-derive from the video URL
+   * (works for youtube, vimeo and gdrive types).
+   */
+  thumbnail?: string;
   /**
    * Optional short, muted MP4 that plays on hover in the grid.
    * Leave undefined to fall back to a still-image hover effect.
@@ -18,6 +22,8 @@ export interface Project {
   /**
    * - youtube:      any watch/share URL, e.g. https://www.youtube.com/watch?v=XXXX
    * - vimeo:        e.g. https://vimeo.com/123456789
+   * - gdrive:       e.g. https://drive.google.com/file/d/FILE_ID/view
+   *                 (file must be shared as "Anyone with the link")
    * - self-hosted:  path under /public, e.g. /videos/my-cut.mp4
    */
   videoUrl: string;

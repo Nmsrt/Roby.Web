@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import type { Project, ProjectType } from "@/data/projects";
 import type { SiteContent } from "@/lib/content";
 
@@ -86,7 +86,6 @@ function newProject(): Project {
     title: "New Project",
     year: String(new Date().getFullYear()),
     client: "",
-    thumbnail: "/thumbs/project-01.svg",
     videoUrl: "https://www.youtube.com/watch?v=XXXX",
     type: "youtube",
     duration: "01:00",
@@ -114,6 +113,12 @@ export default function StudioEditor({
   const [photoStatus, setPhotoStatus] = useState<Status>("idle");
   const [photoMsg, setPhotoMsg] = useState("");
   const [photoVersion, setPhotoVersion] = useState(0);
+  // Stable React keys per project row, independent of the (editable) slug —
+  // keying on the slug would remount the <details> on every keystroke.
+  const [rowKeys, setRowKeys] = useState<string[]>(() =>
+    initialProjects.map((_, i) => `row-${i}`)
+  );
+  const nextKey = useRef(initialProjects.length);
 
   useEffect(() => {
     if (!dirty) return;
@@ -140,19 +145,22 @@ export default function StudioEditor({
   };
 
   const moveProject = (index: number, dir: -1 | 1) => {
-    setProjects((ps) => {
-      const next = [...ps];
-      const target = index + dir;
-      if (target < 0 || target >= next.length) return ps;
+    const target = index + dir;
+    if (target < 0 || target >= projects.length) return;
+    const swap = <T,>(arr: T[]): T[] => {
+      const next = [...arr];
       [next[index], next[target]] = [next[target], next[index]];
       return next;
-    });
+    };
+    setProjects(swap);
+    setRowKeys(swap);
     touch();
   };
 
   const removeProject = (index: number) => {
     if (!window.confirm(`Delete "${projects[index].title}"?`)) return;
     setProjects((ps) => ps.filter((_, i) => i !== index));
+    setRowKeys((ks) => ks.filter((_, i) => i !== index));
     touch();
   };
 
@@ -555,7 +563,7 @@ export default function StudioEditor({
           <div className="flex flex-col gap-4">
             {projects.map((p, i) => (
               <details
-                key={`${p.id}-${i}`}
+                key={rowKeys[i]}
                 className="border border-line open:bg-surface/40"
               >
                 <summary className="flex cursor-pointer items-center gap-3 p-4">
@@ -648,6 +656,7 @@ export default function StudioEditor({
                       >
                         <option value="youtube">YouTube</option>
                         <option value="vimeo">Vimeo</option>
+                        <option value="gdrive">Google Drive</option>
                         <option value="self-hosted">Self-hosted</option>
                       </select>
                     </label>
@@ -657,9 +666,11 @@ export default function StudioEditor({
                       onChange={(v) => patchProject(i, { videoUrl: v })}
                     />
                     <Field
-                      label="Thumbnail path"
-                      value={p.thumbnail}
-                      onChange={(v) => patchProject(i, { thumbnail: v })}
+                      label="Thumbnail (empty = auto from video)"
+                      value={p.thumbnail ?? ""}
+                      onChange={(v) =>
+                        patchProject(i, { thumbnail: v || undefined })
+                      }
                     />
                     <Field
                       label="Hover preview MP4 (optional)"
@@ -692,18 +703,13 @@ export default function StudioEditor({
                       <span className={labelCls}>Featured on home</span>
                     </label>
                   </div>
-                  <Field
-                    area
-                    label="Description"
-                    value={p.description}
-                    onChange={(v) => patchProject(i, { description: v })}
-                  />
                 </div>
               </details>
             ))}
             <button
               onClick={() => {
                 setProjects((ps) => [...ps, newProject()]);
+                setRowKeys((ks) => [...ks, `row-${nextKey.current++}`]);
                 touch();
               }}
               className={`${btnCls} self-start`}

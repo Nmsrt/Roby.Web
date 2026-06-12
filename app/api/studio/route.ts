@@ -14,7 +14,7 @@ const WRITES_ENABLED =
   process.env.STUDIO_WRITE === "true";
 
 const SLUG_RE = /^[a-z0-9-]+$/;
-const PROJECT_TYPES = new Set(["youtube", "vimeo", "self-hosted"]);
+const PROJECT_TYPES = new Set(["youtube", "vimeo", "gdrive", "self-hosted"]);
 
 function isStr(v: unknown): v is string {
   return typeof v === "string";
@@ -65,11 +65,12 @@ function validate(body: unknown): string[] {
       if (!isStr(p.title) || !p.title.trim())
         errors.push(`${at}.title: required`);
       if (!PROJECT_TYPES.has(p.type as string))
-        errors.push(`${at}.type: must be youtube | vimeo | self-hosted`);
+        errors.push(`${at}.type: must be youtube | vimeo | gdrive | self-hosted`);
       if (!isStr(p.videoUrl) || !p.videoUrl.trim())
         errors.push(`${at}.videoUrl: required`);
-      if (!isStr(p.thumbnail) || !p.thumbnail.trim())
-        errors.push(`${at}.thumbnail: required`);
+      // thumbnail is optional — auto-derived from the video URL when empty
+      if (p.thumbnail !== undefined && !isStr(p.thumbnail))
+        errors.push(`${at}.thumbnail: must be a string when set`);
       if (!Array.isArray(p.tools)) errors.push(`${at}.tools: must be an array`);
     });
   }

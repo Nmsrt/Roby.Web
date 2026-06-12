@@ -4,6 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useRef } from "react";
 import type { Project } from "@/data/projects";
+import { projectThumbnail } from "@/lib/video";
 
 export default function ProjectCard({
   project,
@@ -54,7 +55,7 @@ export default function ProjectCard({
         onPointerMove={onScrub}
       >
         <Image
-          src={project.thumbnail}
+          src={projectThumbnail(project)}
           alt={project.title}
           fill
           sizes="(max-width: 768px) 100vw, 50vw"

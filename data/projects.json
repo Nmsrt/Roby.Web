@@ -1,14 +1,13 @@
 [
   {
-    "id": "neon-districts",
-    "title": "Neon Districts",
+    "id": "weaboo",
+    "title": "WOWIE",
     "year": "2025",
-    "client": "Aperture Apparel",
-    "thumbnail": "/thumbs/project-01.svg",
-    "videoUrl": "https://www.youtube.com/watch?v=PLACEHOLDER01",
+    "client": "fdsfd",
+    "videoUrl": "https://www.youtube.com/watch?v=bBUERgh-PH8",
     "type": "youtube",
     "duration": "01:24",
-    "role": "Lead Editor & Colorist",
+    "role": "dsfsfsfsdfsd",
     "tools": [
       "Premiere Pro",
       "DaVinci Resolve",
@@ -18,13 +17,12 @@
     "featured": true
   },
   {
-    "id": "salt-and-smoke",
-    "title": "Salt & Smoke",
+    "id": "ronaldo",
+    "title": "ronaldo noob",
     "year": "2025",
     "client": "Independent",
-    "thumbnail": "/thumbs/project-02.svg",
-    "videoUrl": "https://vimeo.com/76979871",
-    "type": "vimeo",
+    "videoUrl": "https://drive.google.com/file/d/1wntqrj4OyOeArhbQqvQg6Y-7sERAAWel/view?usp=drive_link",
+    "type": "gdrive",
     "duration": "12:08",
     "role": "Editor",
     "tools": [

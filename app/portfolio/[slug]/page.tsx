@@ -3,6 +3,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import VideoEmbed from "@/components/VideoEmbed";
 import { getAdjacentProjects, getProject, projects } from "@/data/projects";
+import { projectThumbnail } from "@/lib/video";
 
 interface Props {
   params: Promise<{ slug: string }>;
@@ -22,7 +23,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     openGraph: {
       title: `${project.title} — Roby De Vera`,
       description: project.description,
-      images: [{ url: project.thumbnail }],
+      images: [{ url: projectThumbnail(project) }],
     },
   };
 }
@@ -35,7 +36,7 @@ export default async function ProjectPage({ params }: Props) {
   const { prev, next } = getAdjacentProjects(slug);
 
   return (
-    <article className="mx-auto max-w-6xl px-6 pb-24 pt-36 md:pb-36 md:pt-44">
+    <article className="mx-auto max-w-7xl px-4 pb-24 pt-36 md:px-6 md:pb-36 md:pt-44">
       <Link
         href="/portfolio"
         className="text-sm uppercase tracking-widest text-muted transition-colors hover:text-accent"
@@ -43,7 +44,8 @@ export default async function ProjectPage({ params }: Props) {
         ← All work
       </Link>
 
-      <header className="mb-12 mt-8 md:mb-16">
+      {/* Title — full width */}
+      <header className="mb-10 mt-8 md:mb-14">
         <p className="text-sm uppercase tracking-[0.3em] text-muted">
           {project.client} — {project.year}
         </p>
@@ -53,42 +55,35 @@ export default async function ProjectPage({ params }: Props) {
         </h1>
       </header>
 
-      <div className="relative">
-        <span
-          className="absolute -left-2 -top-2 h-4 w-4 border-l border-t border-ink/25"
-          aria-hidden="true"
-        />
-        <span
-          className="absolute -right-2 -top-2 h-4 w-4 border-r border-t border-ink/25"
-          aria-hidden="true"
-        />
-        <span
-          className="absolute -bottom-2 -left-2 h-4 w-4 border-b border-l border-ink/25"
-          aria-hidden="true"
-        />
-        <span
-          className="absolute -bottom-2 -right-2 h-4 w-4 border-b border-r border-ink/25"
-          aria-hidden="true"
-        />
-        <VideoEmbed project={project} />
-      </div>
-
-      <div className="mt-4 flex items-center justify-between text-[10px] uppercase tracking-[0.2em] text-muted">
-        <span className="tabular-nums">TC in 00:00:00:00</span>
-        <span className="tabular-nums">Dur {project.duration}</span>
-      </div>
-
-      <div className="mt-12 grid grid-cols-1 gap-12 md:mt-16 md:grid-cols-3">
-        <div className="md:col-span-2">
-          <h2 className="text-sm uppercase tracking-widest text-muted">
-            About this project
-          </h2>
-          <p className="mt-4 max-w-2xl text-lg leading-relaxed">
-            {project.description}
-          </p>
+      {/* Video left, details right */}
+      <div className="grid grid-cols-1 gap-10 lg:grid-cols-3 lg:gap-12">
+        <div className="lg:col-span-2">
+          <div className="relative">
+            <span
+              className="absolute -left-2 -top-2 h-4 w-4 border-l border-t border-ink/25"
+              aria-hidden="true"
+            />
+            <span
+              className="absolute -right-2 -top-2 h-4 w-4 border-r border-t border-ink/25"
+              aria-hidden="true"
+            />
+            <span
+              className="absolute -bottom-2 -left-2 h-4 w-4 border-b border-l border-ink/25"
+              aria-hidden="true"
+            />
+            <span
+              className="absolute -bottom-2 -right-2 h-4 w-4 border-b border-r border-ink/25"
+              aria-hidden="true"
+            />
+            <VideoEmbed project={project} />
+          </div>
+          <div className="mt-4 flex items-center justify-between text-[10px] uppercase tracking-[0.2em] text-muted">
+            <span className="tabular-nums">TC in 00:00:00:00</span>
+            <span className="tabular-nums">Dur {project.duration}</span>
+          </div>
         </div>
 
-        <dl className="flex flex-col gap-8">
+        <dl className="flex flex-col gap-8 lg:border-l lg:border-line lg:pl-10">
           <div>
             <dt className="text-sm uppercase tracking-widest text-muted">
               Role
