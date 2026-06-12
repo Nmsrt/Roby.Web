@@ -4,15 +4,11 @@
     "tagline": "Cutting films, campaigns and music videos with rhythm, restraint and an obsession for the frame that matters."
   },
   "about": {
-    "bio": "23-year-old editor who started cutting in 2021 and never stopped. A year of commercial tempo at **Social Avenue**, now also building **FloorIt** as co-founder — splitting time between client timelines and my own.",
+    "bio": "Video Editor & Creative Professional with 4+ years of experience in content creation and post-production. Currently part of the Creative & Production team at **Social Avenue**, creating content that connects brands with their audience.",
     "subBio": "The job, as I see it: protect the story, respect the rhythm, and cut everything that doesn't earn its frames.",
     "facts": [
       {
-        "label": "Age",
-        "value": "23"
-      },
-      {
-        "label": "Cutting since",
+        "label": "Editing since",
         "value": "2021"
       },
       {
@@ -29,6 +25,14 @@
       }
     ]
   },
+  "marquee": [
+    "Edit",
+    "Color",
+    "Motion",
+    "Sound Design",
+    "Story",
+    "Rhythm"
+  ],
   "capabilities": [
     {
       "track": "V1",

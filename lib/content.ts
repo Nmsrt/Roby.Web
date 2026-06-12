@@ -28,6 +28,8 @@ export interface SiteContent {
     subBio: string;
     facts: Fact[];
   };
+  /** Phrases for the scrolling ticker strip under the hero */
+  marquee: string[];
   capabilities: Capability[];
   contact: {
     email: string;

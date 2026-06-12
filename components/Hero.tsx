@@ -1,6 +1,7 @@
 "use client";
 
 import dynamic from "next/dynamic";
+import Image from "next/image";
 import Link from "next/link";
 import { useRef, useSyncExternalStore } from "react";
 import { gsap, useGSAP, MOTION_OK } from "@/lib/gsap";
@@ -47,12 +48,21 @@ export default function Hero() {
 
       mm.add(MOTION_OK, () => {
         const tl = gsap.timeline({ defaults: { ease: "power4.out" } });
-        tl.to("[data-hero-line] > span", {
-          y: 0,
-          duration: 1.15,
-          stagger: 0.12,
-          delay: 0.25,
-        })
+        tl.to(
+          "[data-hero-avatar]",
+          { opacity: 1, scale: 1, duration: 1.1, delay: 0.2 },
+          0
+        )
+          .to(
+            "[data-hero-line] > span",
+            {
+              y: 0,
+              duration: 1.15,
+              stagger: 0.12,
+              delay: 0.25,
+            },
+            0
+          )
           .to(
             "[data-hero-meta]",
             { opacity: 1, y: 0, duration: 0.9, stagger: 0.08 },
@@ -63,9 +73,10 @@ export default function Hero() {
 
       mm.add("(prefers-reduced-motion: reduce)", () => {
         gsap.set("[data-hero-line] > span", { y: 0 });
-        gsap.set("[data-hero-meta], [data-hero-scroll]", {
+        gsap.set("[data-hero-meta], [data-hero-scroll], [data-hero-avatar]", {
           opacity: 1,
           y: 0,
+          scale: 1,
         });
       });
     },
@@ -76,6 +87,7 @@ export default function Hero() {
 
   return (
     <section
+      id="hero"
       ref={scope}
       className="relative flex min-h-svh flex-col justify-end overflow-hidden hero-gradient"
     >
@@ -90,16 +102,32 @@ export default function Hero() {
           {content.hero.kicker}
         </p>
 
-        <h1 className="font-display text-[13vw] font-extrabold leading-[0.95] tracking-tight md:text-8xl lg:text-9xl">
-          <span data-hero-line className="reveal-line">
-            <span>Roby</span>
-          </span>
-          <span data-hero-line className="reveal-line">
-            <span>
-              De&nbsp;Vera<span className="text-accent">.</span>
+        <div className="flex flex-col items-start gap-6 md:flex-row md:items-stretch md:gap-10">
+          <div
+            data-hero-avatar
+            className="relative h-32 w-28 shrink-0 scale-95 overflow-hidden rounded-2xl border border-line opacity-0 md:h-auto md:w-40 md:self-stretch lg:w-48"
+          >
+            <Image
+              src="/profile.jpg"
+              alt="Portrait of Roby De Vera"
+              fill
+              sizes="(max-width: 768px) 112px, 200px"
+              priority
+              className="object-cover"
+            />
+          </div>
+
+          <h1 className="font-display text-[13vw] font-extrabold leading-[0.95] tracking-tight md:text-8xl lg:text-9xl">
+            <span data-hero-line className="reveal-line">
+              <span>Roby</span>
             </span>
-          </span>
-        </h1>
+            <span data-hero-line className="reveal-line">
+              <span>
+                De&nbsp;Vera<span className="text-accent">.</span>
+              </span>
+            </span>
+          </h1>
+        </div>
 
         <div className="mt-10 flex flex-col gap-8 md:flex-row md:items-end md:justify-between">
           <p

@@ -330,6 +330,46 @@ export default function StudioEditor({
           </div>
         </Section>
 
+        <Section title="Marquee ticker">
+          <p className="text-xs text-muted">
+            Phrases in the scrolling strip under the hero, in order.
+          </p>
+          <div className="flex flex-col gap-3">
+            {content.marquee.map((item, i) => (
+              <div key={i} className="flex items-end gap-3">
+                <input
+                  type="text"
+                  value={item}
+                  onChange={(e) =>
+                    patchContent(
+                      (c) => ((c.marquee[i] = e.target.value), c)
+                    )
+                  }
+                  className={inputCls}
+                />
+                <button
+                  onClick={() =>
+                    patchContent((c) => (c.marquee.splice(i, 1), c))
+                  }
+                  disabled={content.marquee.length <= 1}
+                  className={smallBtnCls}
+                  aria-label={`Remove "${item}"`}
+                >
+                  ✕
+                </button>
+              </div>
+            ))}
+            <button
+              onClick={() =>
+                patchContent((c) => (c.marquee.push("New phrase"), c))
+              }
+              className={`${smallBtnCls} self-start`}
+            >
+              + Add phrase
+            </button>
+          </div>
+        </Section>
+
         <Section title="Capabilities (What I do)">
           {content.capabilities.map((cap, i) => (
             <div key={i} className="border-b border-line pb-5 last:border-0">

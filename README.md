@@ -39,8 +39,9 @@ components/
   editor/                  Video-editor UI chrome:
     Timecode.tsx             running SMPTE timecode (header + hero)
     ViewfinderOverlay.tsx    REC tally, corner brackets, fps slate
-    ScrollPlayhead.tsx       fixed timeline bar; playhead = scroll progress
-    RulerMarquee.tsx         scrolling EDIT/COLOR/MOTION ticker
+    ScrollPlayhead.tsx       fixed timeline bar; playhead = scroll progress,
+                             flag markers jump to sections / routes
+    RulerMarquee.tsx         scrolling ticker (phrases managed in /studio)
   About.tsx                Bio + clip-properties fact panel (edit facts here)
   ProjectGrid.tsx          Scroll-triggered grid entrance
   ProjectCard.tsx          Clip-style card: scrub line, in/out marks, TC badge
@@ -63,8 +64,8 @@ anywhere, `noindex`ed, and optionally gated by `NEXT_PUBLIC_STUDIO_KEY`.
 
 It edits two files:
 
-- `data/content.json` — hero text, about bio + fact rows, capabilities,
-  contact email/intro, social links, footer kicker
+- `data/content.json` — hero text, about bio + fact rows, marquee ticker
+  phrases, capabilities, contact email/intro, social links, footer kicker
 - `data/projects.json` — the full project list (add / delete / reorder /
   edit every field, mark featured)
 
@@ -116,7 +117,11 @@ Video URL formats per type:
 1. Thumbnails: drop 16:9 JPG/WebP files into `public/thumbs/` and update the `thumbnail` paths. Once no SVG thumbnails remain you can delete `images.dangerouslyAllowSVG` from [next.config.ts](next.config.ts).
 2. Hover previews: short (3–5s), muted, heavily compressed MP4s into `public/videos/`, set `previewUrl`. Cards without `previewUrl` fall back to a zoom-on-hover still.
 3. Self-hosted full videos: also `public/videos/`. For anything long, prefer YouTube/Vimeo — static hosting of large MP4s gets expensive.
-4. Social links: edit the `socials` arrays in [components/Footer.tsx](components/Footer.tsx) and [app/contact/page.tsx](app/contact/page.tsx).
+4. Social links: edit via `/studio` or `data/content.json` (used by both
+   the footer and the contact page).
+5. Profile photo: replace `public/profile.jpg` (square crop recommended;
+   it renders at 144px, so anything ≥ 600×600 is plenty — keep it under
+   ~200KB for fast loads).
 
 ## Contact form
 

@@ -13,7 +13,10 @@ export default function Home() {
 
       <RulerMarquee />
 
-      <section className="mx-auto max-w-6xl px-6 py-24 md:py-36">
+      <section
+        id="work"
+        className="mx-auto max-w-6xl scroll-mt-20 px-6 py-24 md:py-36"
+      >
         <div className="mb-14 flex items-end justify-between gap-6 md:mb-20">
           <div>
             <p className="text-xs uppercase tracking-[0.3em] text-muted">
@@ -33,7 +36,7 @@ export default function Home() {
         <ProjectGrid projects={featuredProjects} />
       </section>
 
-      <section className="border-t border-line">
+      <section id="about" className="scroll-mt-20 border-t border-line">
         <div className="mx-auto max-w-6xl px-6 py-24 md:py-36">
           <p className="text-xs uppercase tracking-[0.3em] text-muted">
             Seq 02 — Source
@@ -45,7 +48,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="border-t border-line">
+      <section id="tracks" className="scroll-mt-20 border-t border-line">
         <div className="mx-auto max-w-6xl px-6 py-24 md:py-36">
           <p className="text-xs uppercase tracking-[0.3em] text-muted">
             Seq 03 — Tracks

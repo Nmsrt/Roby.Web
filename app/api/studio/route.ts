@@ -35,6 +35,12 @@ function validate(body: unknown): string[] {
       errors.push("content.about: bio/subBio must be strings");
     if (!Array.isArray(c.about?.facts))
       errors.push("content.about.facts: must be an array");
+    if (
+      !Array.isArray(c.marquee) ||
+      c.marquee.length === 0 ||
+      !(c.marquee as unknown[]).every(isStr)
+    )
+      errors.push("content.marquee: must be a non-empty array of strings");
     if (!Array.isArray(c.capabilities))
       errors.push("content.capabilities: must be an array");
     if (!isStr(c.contact?.email) || !c.contact.email.includes("@"))
