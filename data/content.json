@@ -5,7 +5,7 @@
   },
   "about": {
     "bio": "Video Editor & Creative Professional with 4+ years of experience in content creation and post-production. Currently part of the Creative & Production team at **Social Avenue**, creating content that connects brands with their audience.",
-    "subBio": "The job, as I see it: protect the story, respect the rhythm, and cut everything that doesn't earn its frames.",
+    "subBio": "Blending creativity, strategy, and post-production to create content that captures attention and drives engagement. From short-form social content to brand campaigns, every frame serves a purpose.",
     "facts": [
       {
         "label": "Editing since",
@@ -13,53 +13,49 @@
       },
       {
         "label": "Social Avenue",
-        "value": "Editor — 1 yr"
+        "value": "Creative  — 1 yr"
       },
       {
         "label": "FloorIt",
         "value": "Co-Founder"
-      },
-      {
-        "label": "Status",
-        "value": "Booking"
       }
     ]
   },
   "marquee": [
-    "Creating content that connects brands with their audience"
+    "FINDING RHYTHM IN EVERY EDIT",
+    "TURNING IDEAS INTO VISUAL STORIES",
+    "EDITING WITH PURPOSE",
+    "CRAFTING MOMENTS THAT MATTER",
+    "STORY FIRST, ALWAYS"
   ],
   "capabilities": [
     {
       "track": "V1",
       "title": "Editing",
-      "body": "Narrative, commercial and music video editing — structure, pacing and rhythm that serve the story, not the timeline."
+      "body": "Transforming raw footage into compelling visual stories through pacing, structure, and attention to detail. Using DaVinci Resolve to craft content that is engaging, polished, and tailored to each project's goals."
     },
     {
       "track": "V2",
       "title": "Color",
-      "body": "Grades built in DaVinci Resolve, from clean broadcast-safe looks to heavy filmic treatments that hold up on every screen."
+      "body": "Shaping the mood and visual identity of every project through thoughtful color grading. Using DaVinci Resolve to enhance storytelling, establish atmosphere, and create a consistent look across films, commercials, and digital content."
     },
     {
       "track": "A1",
       "title": "Motion & Sound",
-      "body": "Title design, speed ramps and seamless VFX in After Effects, with sound design that makes every cut land harder."
+      "body": "Crafting visuals and audio that work together to create engaging, polished content. Using DaVinci Resolve for editing, color, and motion graphics, and Ableton Live for sound design, audio cleanup, and music integration."
     }
   ],
   "contact": {
     "email": "devera.roby2304@gmail.com",
-    "intro": "Booking edits, grades and full post-production. Tell me about the project, the deadline, and what the footage looks like.",
+    "intro": "If you have an idea, a brand to grow, or a story to tell, let's connect. I'm always open to new collaborations, creative challenges, and opportunities to create impactful content.",
     "socials": [
       {
         "label": "Instagram",
-        "href": "https://instagram.com/"
-      },
-      {
-        "label": "YouTube",
-        "href": "https://youtube.com/"
+        "href": "https://www.instagram.com/rroobbiihh/"
       }
     ]
   },
   "footer": {
-    "kicker": "Let's cut something"
+    "kicker": "Every great project starts with a conversation."
   }
 }
