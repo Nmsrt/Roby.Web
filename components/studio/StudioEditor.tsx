@@ -712,6 +712,24 @@ export default function StudioEditor({
             </button>
           </div>
         </Section>
+
+        {/* Bottom save bar — mirrors the sticky one at the top */}
+        <div className="flex flex-wrap items-center gap-3 border border-line p-4">
+          <button
+            onClick={save}
+            disabled={status === "saving"}
+            className={btnCls}
+          >
+            {status === "saving" ? "Saving…" : "Save to files"}
+          </button>
+          <span className="ml-auto text-xs text-muted">
+            {status === "saved" && <span className="text-accent">Saved ✓</span>}
+            {status === "error" && (
+              <span className="text-accent">{errorMsg}</span>
+            )}
+            {status === "idle" && dirty && "Unsaved changes"}
+          </span>
+        </div>
       </div>
     </div>
   );
