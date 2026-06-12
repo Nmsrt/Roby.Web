@@ -5,6 +5,7 @@ import Link from "next/link";
 import { useRef, useSyncExternalStore } from "react";
 import { gsap, useGSAP, MOTION_OK } from "@/lib/gsap";
 import { usePrefersReducedMotion } from "@/lib/usePrefersReducedMotion";
+import ViewfinderOverlay from "@/components/editor/ViewfinderOverlay";
 
 const HeroCanvas = dynamic(() => import("@/components/webgl/HeroCanvas"), {
   ssr: false,
@@ -77,6 +78,7 @@ export default function Hero() {
       className="relative flex min-h-svh flex-col justify-end overflow-hidden hero-gradient"
     >
       {showCanvas && <HeroCanvas />}
+      <ViewfinderOverlay />
 
       <div className="relative z-10 mx-auto w-full max-w-6xl px-6 pb-24 pt-40 md:pb-32">
         <p
@@ -127,7 +129,7 @@ export default function Hero() {
 
       <div
         data-hero-scroll
-        className="pointer-events-none absolute bottom-8 left-1/2 z-10 -translate-x-1/2 opacity-0"
+        className="pointer-events-none absolute bottom-14 left-1/2 z-10 -translate-x-1/2 opacity-0"
         aria-hidden="true"
       >
         <div className="h-12 w-px animate-pulse bg-gradient-to-b from-transparent via-muted to-transparent" />

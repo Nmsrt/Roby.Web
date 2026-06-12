@@ -5,14 +5,17 @@ import { gsap, useGSAP, MOTION_OK } from "@/lib/gsap";
 
 const capabilities = [
   {
+    track: "V1",
     title: "Editing",
     body: "Narrative, commercial and music video editing — structure, pacing and rhythm that serve the story, not the timeline.",
   },
   {
+    track: "V2",
     title: "Color",
     body: "Grades built in DaVinci Resolve, from clean broadcast-safe looks to heavy filmic treatments that hold up on every screen.",
   },
   {
+    track: "A1",
     title: "Motion & Sound",
     body: "Title design, speed ramps and seamless VFX in After Effects, with sound design that makes every cut land harder.",
   },
@@ -44,10 +47,12 @@ export default function Capabilities() {
 
   return (
     <div ref={scope} className="grid grid-cols-1 gap-12 md:grid-cols-3">
-      {capabilities.map(({ title, body }, i) => (
+      {capabilities.map(({ track, title, body }) => (
         <div key={title} data-capability>
-          <p className="text-sm text-muted">{String(i + 1).padStart(2, "0")}</p>
-          <h3 className="mt-3 font-display text-2xl font-bold tracking-tight">
+          <span className="inline-block border border-line px-2 py-0.5 text-xs uppercase tracking-[0.2em] text-accent">
+            {track}
+          </span>
+          <h3 className="mt-4 font-display text-2xl font-bold tracking-tight">
             {title}
             <span className="text-accent">.</span>
           </h3>

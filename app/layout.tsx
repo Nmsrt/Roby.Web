@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from "next";
 import { Inter, Syne } from "next/font/google";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import ScrollPlayhead from "@/components/editor/ScrollPlayhead";
 import "./globals.css";
 
 const inter = Inter({
@@ -59,6 +60,7 @@ export default function RootLayout({
         <Header />
         <main className="flex-1">{children}</main>
         <Footer />
+        <ScrollPlayhead />
       </body>
     </html>
   );

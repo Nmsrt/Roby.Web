@@ -53,7 +53,30 @@ export default async function ProjectPage({ params }: Props) {
         </h1>
       </header>
 
-      <VideoEmbed project={project} />
+      <div className="relative">
+        <span
+          className="absolute -left-2 -top-2 h-4 w-4 border-l border-t border-ink/25"
+          aria-hidden="true"
+        />
+        <span
+          className="absolute -right-2 -top-2 h-4 w-4 border-r border-t border-ink/25"
+          aria-hidden="true"
+        />
+        <span
+          className="absolute -bottom-2 -left-2 h-4 w-4 border-b border-l border-ink/25"
+          aria-hidden="true"
+        />
+        <span
+          className="absolute -bottom-2 -right-2 h-4 w-4 border-b border-r border-ink/25"
+          aria-hidden="true"
+        />
+        <VideoEmbed project={project} />
+      </div>
+
+      <div className="mt-4 flex items-center justify-between text-[10px] uppercase tracking-[0.2em] text-muted">
+        <span className="tabular-nums">TC in 00:00:00:00</span>
+        <span className="tabular-nums">Dur {project.duration}</span>
+      </div>
 
       <div className="mt-12 grid grid-cols-1 gap-12 md:mt-16 md:grid-cols-3">
         <div className="md:col-span-2">
@@ -71,6 +94,12 @@ export default async function ProjectPage({ params }: Props) {
               Role
             </dt>
             <dd className="mt-2">{project.role}</dd>
+          </div>
+          <div>
+            <dt className="text-sm uppercase tracking-widest text-muted">
+              Runtime
+            </dt>
+            <dd className="mt-2 tabular-nums">{project.duration}</dd>
           </div>
           <div>
             <dt className="text-sm uppercase tracking-widest text-muted">

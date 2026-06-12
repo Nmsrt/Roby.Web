@@ -10,8 +10,6 @@
 
   --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
   --font-display: var(--font-syne), var(--font-inter), ui-sans-serif, sans-serif;
-
-  --animate-marquee: marquee 30s linear infinite;
 }
 
 html {
@@ -30,6 +28,8 @@ body {
   font-family: var(--font-sans);
   -webkit-font-smoothing: antialiased;
   overflow-x: hidden;
+  /* Clearance for the fixed ScrollPlayhead timeline bar */
+  padding-bottom: 2rem;
 }
 
 ::selection {
@@ -71,5 +71,31 @@ body {
 @media (prefers-reduced-motion: reduce) {
   .reveal-line > span {
     transform: none;
+  }
+}
+
+/* Timeline ruler tick marks (ScrollPlayhead, section dividers) */
+.ruler {
+  background-image: repeating-linear-gradient(
+    90deg,
+    var(--color-line) 0 1px,
+    transparent 1px 12px
+  );
+}
+
+/* RulerMarquee ticker */
+.marquee-track {
+  animation: marquee-scroll 28s linear infinite;
+}
+
+@keyframes marquee-scroll {
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .marquee-track {
+    animation: none;
   }
 }

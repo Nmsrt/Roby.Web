@@ -2,6 +2,7 @@ import Link from "next/link";
 import Hero from "@/components/Hero";
 import ProjectGrid from "@/components/ProjectGrid";
 import Capabilities from "@/components/Capabilities";
+import RulerMarquee from "@/components/editor/RulerMarquee";
 import { featuredProjects } from "@/data/projects";
 
 export default function Home() {
@@ -9,11 +10,18 @@ export default function Home() {
     <>
       <Hero />
 
+      <RulerMarquee />
+
       <section className="mx-auto max-w-6xl px-6 py-24 md:py-36">
         <div className="mb-14 flex items-end justify-between gap-6 md:mb-20">
-          <h2 className="font-display text-4xl font-bold tracking-tight md:text-6xl">
-            Selected Work<span className="text-accent">.</span>
-          </h2>
+          <div>
+            <p className="text-xs uppercase tracking-[0.3em] text-muted">
+              Seq 01 — Selects
+            </p>
+            <h2 className="mt-3 font-display text-4xl font-bold tracking-tight md:text-6xl">
+              Selected Work<span className="text-accent">.</span>
+            </h2>
+          </div>
           <Link
             href="/portfolio"
             className="shrink-0 text-sm uppercase tracking-widest text-muted underline-offset-8 transition-colors hover:text-accent hover:underline"
@@ -26,7 +34,10 @@ export default function Home() {
 
       <section className="border-t border-line">
         <div className="mx-auto max-w-6xl px-6 py-24 md:py-36">
-          <h2 className="mb-14 font-display text-4xl font-bold tracking-tight md:mb-20 md:text-6xl">
+          <p className="text-xs uppercase tracking-[0.3em] text-muted">
+            Seq 02 — Tracks
+          </p>
+          <h2 className="mb-14 mt-3 font-display text-4xl font-bold tracking-tight md:mb-20 md:text-6xl">
             What I do<span className="text-accent">.</span>
           </h2>
           <Capabilities />
@@ -36,7 +47,7 @@ export default function Home() {
       <section className="border-t border-line">
         <div className="mx-auto max-w-6xl px-6 py-24 text-center md:py-36">
           <p className="text-sm uppercase tracking-[0.3em] text-muted">
-            Currently booking
+            Seq 03 — Export · Currently booking
           </p>
           <h2 className="mx-auto mt-6 max-w-3xl font-display text-4xl font-bold leading-tight tracking-tight md:text-6xl">
             Have a story that needs cutting

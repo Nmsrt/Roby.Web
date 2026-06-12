@@ -20,6 +20,8 @@ export interface Project {
    */
   videoUrl: string;
   type: ProjectType;
+  /** Display runtime, mm:ss — shown on clip badges and the project page */
+  duration: string;
   role: string;
   tools: string[];
   description: string;
@@ -36,6 +38,7 @@ export const projects: Project[] = [
     thumbnail: "/thumbs/project-01.svg",
     videoUrl: "https://www.youtube.com/watch?v=PLACEHOLDER01",
     type: "youtube",
+    duration: "01:24",
     role: "Lead Editor & Colorist",
     tools: ["Premiere Pro", "DaVinci Resolve", "After Effects"],
     description:
@@ -50,6 +53,7 @@ export const projects: Project[] = [
     thumbnail: "/thumbs/project-02.svg",
     videoUrl: "https://vimeo.com/76979871",
     type: "vimeo",
+    duration: "12:08",
     role: "Editor",
     tools: ["Premiere Pro", "DaVinci Resolve"],
     description:
@@ -64,6 +68,7 @@ export const projects: Project[] = [
     thumbnail: "/thumbs/project-03.svg",
     videoUrl: "https://www.youtube.com/watch?v=PLACEHOLDER03",
     type: "youtube",
+    duration: "03:42",
     role: "Editor & VFX",
     tools: ["Premiere Pro", "After Effects"],
     description:
@@ -78,6 +83,7 @@ export const projects: Project[] = [
     thumbnail: "/thumbs/project-04.svg",
     videoUrl: "/videos/form-and-function.mp4",
     type: "self-hosted",
+    duration: "01:58",
     role: "Editor & Sound Design",
     tools: ["Premiere Pro", "Audition"],
     description:
@@ -92,6 +98,7 @@ export const projects: Project[] = [
     thumbnail: "/thumbs/project-05.svg",
     videoUrl: "https://vimeo.com/PLACEHOLDER05",
     type: "vimeo",
+    duration: "07:21",
     role: "Editor & Colorist",
     tools: ["DaVinci Resolve"],
     description:
@@ -105,6 +112,7 @@ export const projects: Project[] = [
     thumbnail: "/thumbs/project-06.svg",
     videoUrl: "https://www.youtube.com/watch?v=PLACEHOLDER06",
     type: "youtube",
+    duration: "00:45",
     role: "Editor",
     tools: ["Premiere Pro", "After Effects"],
     description:
@@ -118,6 +126,7 @@ export const projects: Project[] = [
     thumbnail: "/thumbs/project-07.svg",
     videoUrl: "/videos/the-long-table.mp4",
     type: "self-hosted",
+    duration: "04:30",
     role: "Editor",
     tools: ["Premiere Pro", "DaVinci Resolve"],
     description:
@@ -131,6 +140,7 @@ export const projects: Project[] = [
     thumbnail: "/thumbs/project-08.svg",
     videoUrl: "https://vimeo.com/PLACEHOLDER08",
     type: "vimeo",
+    duration: "09:12",
     role: "Editor & Colorist",
     tools: ["Premiere Pro", "DaVinci Resolve"],
     description:
@@ -144,6 +154,7 @@ export const projects: Project[] = [
     thumbnail: "/thumbs/project-09.svg",
     videoUrl: "https://www.youtube.com/watch?v=PLACEHOLDER09",
     type: "youtube",
+    duration: "11:36",
     role: "Director & Editor",
     tools: ["Premiere Pro", "After Effects", "Audition"],
     description:
@@ -157,6 +168,7 @@ export const projects: Project[] = [
     thumbnail: "/thumbs/project-10.svg",
     videoUrl: "/videos/showreel-2025.mp4",
     type: "self-hosted",
+    duration: "01:00",
     role: "Editor",
     tools: ["Premiere Pro", "After Effects", "DaVinci Resolve"],
     description:

@@ -19,7 +19,7 @@ export default function ContactPage() {
     <div className="mx-auto max-w-6xl px-6 pb-24 pt-36 md:pb-36 md:pt-44">
       <div className="mb-16 md:mb-24">
         <p className="text-sm uppercase tracking-[0.3em] text-muted">
-          Contact
+          Slate — Contact
         </p>
         <h1 className="mt-4 font-display text-5xl font-extrabold tracking-tight md:text-8xl">
           Let&apos;s talk<span className="text-accent">.</span>

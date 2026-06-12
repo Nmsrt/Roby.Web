@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
+import Timecode from "@/components/editor/Timecode";
 
 const links = [
   { href: "/portfolio", label: "Work" },
@@ -35,23 +36,26 @@ export default function Header() {
         >
           RDV<span className="text-accent">.</span>
         </Link>
-        <ul className="flex items-center gap-8">
-          {links.map(({ href, label }) => {
-            const active = pathname?.startsWith(href);
-            return (
-              <li key={href}>
-                <Link
-                  href={href}
-                  className={`text-sm uppercase tracking-widest transition-colors hover:text-accent ${
-                    active ? "text-accent" : "text-ink"
-                  }`}
-                >
-                  {label}
-                </Link>
-              </li>
-            );
-          })}
-        </ul>
+        <div className="flex items-center gap-8">
+          <ul className="flex items-center gap-8">
+            {links.map(({ href, label }) => {
+              const active = pathname?.startsWith(href);
+              return (
+                <li key={href}>
+                  <Link
+                    href={href}
+                    className={`text-sm uppercase tracking-widest transition-colors hover:text-accent ${
+                      active ? "text-accent" : "text-ink"
+                    }`}
+                  >
+                    {label}
+                  </Link>
+                </li>
+              );
+            })}
+          </ul>
+          <Timecode className="hidden text-[10px] tracking-[0.2em] text-muted md:inline" />
+        </div>
       </nav>
     </header>
   );

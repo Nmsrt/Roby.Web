@@ -36,8 +36,13 @@ components/
   Header.tsx / Footer.tsx
   Hero.tsx                 Hero text reveal + mounts the WebGL canvas
   webgl/HeroCanvas.tsx     R3F particle field (the WebGL layer)
+  editor/                  Video-editor UI chrome:
+    Timecode.tsx             running SMPTE timecode (header + hero)
+    ViewfinderOverlay.tsx    REC tally, corner brackets, fps slate
+    ScrollPlayhead.tsx       fixed timeline bar; playhead = scroll progress
+    RulerMarquee.tsx         scrolling EDIT/COLOR/MOTION ticker
   ProjectGrid.tsx          Scroll-triggered grid entrance
-  ProjectCard.tsx          Thumbnail + hover video preview
+  ProjectCard.tsx          Clip-style card: scrub line, in/out marks, TC badge
   VideoEmbed.tsx           YouTube / Vimeo / self-hosted player
   ContactForm.tsx          Formspree with mailto fallback
 data/
@@ -64,6 +69,7 @@ Everything is one typed array: [data/projects.ts](data/projects.ts).
   previewUrl: "/videos/my-new-cut-preview.mp4", // optional 3–5s muted hover clip
   videoUrl: "https://www.youtube.com/watch?v=XXXX",
   type: "youtube",             // "youtube" | "vimeo" | "self-hosted"
+  duration: "02:14",           // runtime shown on clip badges (mm:ss)
   role: "Editor & Colorist",
   tools: ["Premiere Pro", "DaVinci Resolve"],
   description: "One or two sentences about the project.",
