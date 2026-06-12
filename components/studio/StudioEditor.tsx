@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { useEffect, useState } from "react";
 import type { Project, ProjectType } from "@/data/projects";
 import type { SiteContent } from "@/lib/content";
@@ -7,7 +8,7 @@ import type { SiteContent } from "@/lib/content";
 const STUDIO_KEY = process.env.NEXT_PUBLIC_STUDIO_KEY;
 
 const inputCls =
-  "w-full border-b border-line bg-transparent py-2 text-sm outline-none transition-colors focus:border-accent";
+  "w-full rounded-md border border-line bg-ink px-3 py-2 text-sm text-[#0e0e0e] outline-none transition-colors placeholder:text-[#0e0e0e]/40 focus:border-accent";
 const labelCls = "text-[10px] uppercase tracking-[0.2em] text-muted";
 const btnCls =
   "border border-line px-4 py-2 text-xs uppercase tracking-widest transition-colors hover:border-accent hover:text-accent disabled:opacity-40";
@@ -110,6 +111,9 @@ export default function StudioEditor({
   const [status, setStatus] = useState<Status>("idle");
   const [errorMsg, setErrorMsg] = useState("");
   const [dirty, setDirty] = useState(false);
+  const [photoStatus, setPhotoStatus] = useState<Status>("idle");
+  const [photoMsg, setPhotoMsg] = useState("");
+  const [photoVersion, setPhotoVersion] = useState(0);
 
   useEffect(() => {
     if (!dirty) return;
@@ -151,6 +155,31 @@ export default function StudioEditor({
     setProjects((ps) => ps.filter((_, i) => i !== index));
     touch();
   };
+
+  async function uploadPhoto(file: File) {
+    if (!file.type.startsWith("image/")) {
+      setPhotoStatus("error");
+      setPhotoMsg("Pick an image file.");
+      return;
+    }
+    setPhotoStatus("saving");
+    setPhotoMsg("");
+    try {
+      const fd = new FormData();
+      fd.append("file", file);
+      const res = await fetch("/api/studio/upload", {
+        method: "POST",
+        body: fd,
+      });
+      const data = await res.json();
+      if (!res.ok) throw new Error(data.error ?? `HTTP ${res.status}`);
+      setPhotoStatus("saved");
+      setPhotoVersion(Date.now());
+    } catch (err) {
+      setPhotoStatus("error");
+      setPhotoMsg(err instanceof Error ? err.message : "Upload failed");
+    }
+  }
 
   async function save() {
     setStatus("saving");
@@ -261,6 +290,51 @@ export default function StudioEditor({
               patchContent((c) => ((c.hero.tagline = v), c))
             }
           />
+        </Section>
+
+        <Section title="Profile photo">
+          <div className="flex flex-col gap-6 sm:flex-row sm:items-start">
+            <div className="relative h-40 w-32 shrink-0 overflow-hidden rounded-2xl border border-line bg-surface">
+              <Image
+                key={photoVersion}
+                src={`/profile.jpg?v=${photoVersion}`}
+                alt="Current profile photo"
+                fill
+                unoptimized
+                className="object-cover"
+              />
+            </div>
+            <div className="flex flex-col gap-3">
+              <p className="text-xs leading-relaxed text-muted">
+                Shown in the hero next to the name. JPEG, PNG or WebP, max
+                8MB — a portrait crop (4:5-ish) looks best. Uploading
+                replaces <code>public/profile.jpg</code> immediately.
+              </p>
+              <label className={`${btnCls} cursor-pointer self-start`}>
+                {photoStatus === "saving" ? "Uploading…" : "Choose image…"}
+                <input
+                  type="file"
+                  accept="image/jpeg,image/png,image/webp"
+                  className="hidden"
+                  disabled={photoStatus === "saving"}
+                  onChange={(e) => {
+                    const file = e.target.files?.[0];
+                    if (file) uploadPhoto(file);
+                    e.target.value = "";
+                  }}
+                />
+              </label>
+              {photoStatus === "saved" && (
+                <p className="text-xs text-accent">
+                  Uploaded ✓ — hard-refresh the site (Ctrl+Shift+R) if the
+                  old photo lingers.
+                </p>
+              )}
+              {photoStatus === "error" && (
+                <p className="text-xs text-accent">{photoMsg}</p>
+              )}
+            </div>
+          </div>
         </Section>
 
         <Section title="About">
@@ -570,7 +644,7 @@ export default function StudioEditor({
                             type: e.target.value as ProjectType,
                           })
                         }
-                        className={`${inputCls} bg-base`}
+                        className={inputCls}
                       >
                         <option value="youtube">YouTube</option>
                         <option value="vimeo">Vimeo</option>

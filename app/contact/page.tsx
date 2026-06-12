@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import ContactForm from "@/components/ContactForm";
 import { content } from "@/lib/content";
 
 export const metadata: Metadata = {
@@ -7,8 +6,6 @@ export const metadata: Metadata = {
   description:
     "Get in touch with Roby De Vera for editing, color and motion work.",
 };
-
-const socials = content.contact.socials;
 
 export default function ContactPage() {
   return (
@@ -25,43 +22,14 @@ export default function ContactPage() {
         </p>
       </div>
 
-      <div className="grid grid-cols-1 gap-16 md:grid-cols-5">
-        <div className="md:col-span-3">
-          <ContactForm />
-        </div>
-
-        <aside className="flex flex-col gap-10 md:col-span-2">
-          <div>
-            <h2 className="text-sm uppercase tracking-widest text-muted">
-              Email
-            </h2>
-            <a
-              href={`mailto:${content.contact.email}`}
-              className="mt-3 inline-block font-display text-xl font-bold break-all transition-colors hover:text-accent md:text-2xl"
-            >
-              {content.contact.email}
-            </a>
-          </div>
-          <div>
-            <h2 className="text-sm uppercase tracking-widest text-muted">
-              Elsewhere
-            </h2>
-            <ul className="mt-3 flex flex-col gap-2">
-              {socials.map(({ label, href }) => (
-                <li key={label}>
-                  <a
-                    href={href}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-muted transition-colors hover:text-accent"
-                  >
-                    {label} ↗
-                  </a>
-                </li>
-              ))}
-            </ul>
-          </div>
-        </aside>
+      <div>
+        <h2 className="text-sm uppercase tracking-widest text-muted">Email</h2>
+        <a
+          href={`mailto:${content.contact.email}`}
+          className="mt-4 inline-block font-display text-2xl font-bold break-all tracking-tight transition-colors hover:text-accent md:text-5xl"
+        >
+          {content.contact.email}
+        </a>
       </div>
     </div>
   );

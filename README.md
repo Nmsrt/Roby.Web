@@ -28,7 +28,7 @@ app/
   page.tsx                 Home (hero + featured work + capabilities + CTA)
   portfolio/page.tsx       All 10 projects
   portfolio/[slug]/page.tsx  Project detail (video embed, role, tools)
-  contact/page.tsx         Contact form + email + socials
+  contact/page.tsx         Contact email (managed via /studio)
   template.tsx             GSAP page-transition fade on every route change
   sitemap.ts / robots.ts   SEO
   opengraph-image.tsx      Auto-generated OG card (PNG at build)
@@ -46,7 +46,6 @@ components/
   ProjectGrid.tsx          Scroll-triggered grid entrance
   ProjectCard.tsx          Clip-style card: scrub line, in/out marks, TC badge
   VideoEmbed.tsx           YouTube / Vimeo / self-hosted player
-  ContactForm.tsx          Formspree with mailto fallback
 data/
   projects.ts              ← ALL project content lives here
 lib/
@@ -68,6 +67,8 @@ It edits two files:
   phrases, capabilities, contact email/intro, social links, footer kicker
 - `data/projects.json` — the full project list (add / delete / reorder /
   edit every field, mark featured)
+- `public/profile.jpg` — the hero profile photo, via the upload control
+  (JPEG/PNG/WebP, max 8MB; same dev/self-hosted write policy)
 
 How saving works:
 
@@ -123,13 +124,6 @@ Video URL formats per type:
    it renders at 144px, so anything ≥ 600×600 is plenty — keep it under
    ~200KB for fast loads).
 
-## Contact form
-
-Two modes, switched by an env var:
-
-- **Formspree** (recommended): create a form at formspree.io, copy the ID, set `NEXT_PUBLIC_FORMSPREE_ID` (see `.env.example`).
-- **No env var set**: the form opens the visitor's mail client (mailto) pre-filled with their message.
-
 ## Theme / colors
 
 Tailwind v4 — there is **no tailwind.config file**; the theme lives in [app/globals.css](app/globals.css):
@@ -174,7 +168,6 @@ Copy `.env.example` to `.env.local`:
 | Var                        | Purpose                                  |
 | -------------------------- | ---------------------------------------- |
 | `NEXT_PUBLIC_SITE_URL`     | Canonical URL for SEO/sitemap/OG         |
-| `NEXT_PUBLIC_FORMSPREE_ID` | Enables the contact form's POST mode     |
 | `NEXT_PUBLIC_STUDIO_KEY`   | Optional access key for `/studio`        |
 | `STUDIO_WRITE`             | `true` lets `/studio` write files in prod (self-hosted only) |
 

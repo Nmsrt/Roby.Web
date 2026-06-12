@@ -7,6 +7,11 @@ const nextConfig: NextConfig = {
     dangerouslyAllowSVG: true,
     contentDispositionType: "attachment",
     contentSecurityPolicy: "default-src 'self'; script-src 'none'; sandbox;",
+    localPatterns: [
+      // Avatar gets a ?v= mtime query for cache busting after /studio uploads
+      { pathname: "/profile.jpg" },
+      { pathname: "/thumbs/**" },
+    ],
   },
 };
 

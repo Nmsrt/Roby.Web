@@ -8,7 +8,12 @@ const FALLBACK = ["Edit", "Color", "Motion", "Sound Design", "Story", "Rhythm"];
  * stops under prefers-reduced-motion.
  */
 export default function RulerMarquee() {
-  const items = content.marquee?.length ? content.marquee : FALLBACK;
+  const base = content.marquee?.length ? content.marquee : FALLBACK;
+  // Each half of the track must be wider than the viewport for a seamless
+  // loop, so short lists (e.g. a single phrase) get repeated.
+  const items = Array<string[]>(Math.max(1, Math.ceil(6 / base.length)))
+    .fill(base)
+    .flat();
 
   return (
     <div

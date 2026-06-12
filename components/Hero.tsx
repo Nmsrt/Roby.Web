@@ -33,7 +33,7 @@ function getWebglSnapshot(): boolean {
 
 const emptySubscribe = () => () => {};
 
-export default function Hero() {
+export default function Hero({ photoVersion }: { photoVersion?: number }) {
   const scope = useRef<HTMLElement>(null);
   const reducedMotion = usePrefersReducedMotion();
   const webglOk = useSyncExternalStore(
@@ -108,7 +108,7 @@ export default function Hero() {
             className="relative h-32 w-28 shrink-0 scale-95 overflow-hidden rounded-2xl border border-line opacity-0 md:h-auto md:w-40 md:self-stretch lg:w-48"
           >
             <Image
-              src="/profile.jpg"
+              src={photoVersion ? `/profile.jpg?v=${photoVersion}` : "/profile.jpg"}
               alt="Portrait of Roby De Vera"
               fill
               sizes="(max-width: 768px) 112px, 200px"

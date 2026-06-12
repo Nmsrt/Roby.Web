@@ -1,3 +1,5 @@
+import { stat } from "fs/promises";
+import path from "path";
 import Link from "next/link";
 import Hero from "@/components/Hero";
 import ProjectGrid from "@/components/ProjectGrid";
@@ -6,10 +8,18 @@ import Capabilities from "@/components/Capabilities";
 import RulerMarquee from "@/components/editor/RulerMarquee";
 import { featuredProjects } from "@/data/projects";
 
-export default function Home() {
+export default async function Home() {
+  // Cache-buster: the avatar URL changes whenever the file does, so
+  // uploads from /studio show up without fighting image caches.
+  const photoVersion = await stat(
+    path.join(process.cwd(), "public", "profile.jpg")
+  )
+    .then((s) => Math.floor(s.mtimeMs))
+    .catch(() => undefined);
+
   return (
     <>
-      <Hero />
+      <Hero photoVersion={photoVersion} />
 
       <RulerMarquee />
 
