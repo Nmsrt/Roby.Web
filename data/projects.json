@@ -15,16 +15,15 @@
     "featured": true
   },
   {
-    "id": "ronaldo",
-    "title": "ronaldo noob",
-    "year": "2025",
-    "client": "Independent",
+    "id": "ninepot-ad",
+    "title": "Ninepot Ad",
+    "year": "2026",
+    "client": "Ninepot",
     "videoUrl": "https://drive.google.com/file/d/1wntqrj4OyOeArhbQqvQg6Y-7sERAAWel/view?usp=drive_link",
     "type": "gdrive",
-    "duration": "12:08",
+    "duration": "1:16",
     "role": "Editor",
     "tools": [
-      "Premiere Pro",
       "DaVinci Resolve"
     ],
     "description": "A 12-minute documentary short following a third-generation smokehouse. Built from 14 hours of vérité footage — the edit leans on long takes and ambient sound beds to let the place breathe.",
